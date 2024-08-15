@@ -1,0 +1,14 @@
+<!-- news_search.html -->
+<form method="get">
+    {{ filter.form.as_p }}  <!-- Отображаем форму фильтрации -->
+    <button type="submit">Поиск</button>
+</form>
+
+<h2>Результаты поиска:</h2>
+<ul>
+    {% for article in filter.qs %}
+        <li><a href="{% url 'news_detail' article.id %}">{{ article.title }}</a> - {{ article.author }} ({{ article.pub_date }})</li>
+    {% empty %}
+        <li>Нет результатов.</li>
+    {% endfor %}
+</ul>
